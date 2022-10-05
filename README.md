@@ -2,7 +2,7 @@
 
 A demo showing how cursor sharing features can be implemented with Daily's [`"app-message"`](LINK) events.
 
-![Demo screenshot description](./screenshot.png)
+![Cursor sharing example](./screenshot.gif)
 
 ## Prerequisites
 
