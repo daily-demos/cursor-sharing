@@ -22,7 +22,7 @@ export function startCursorListener(callback) {
 
       mouseStopTimeout = setTimeout((_) => {
         sendData(e, callback);
-      }, 300);
+      }, 100);
     },
     false
   );

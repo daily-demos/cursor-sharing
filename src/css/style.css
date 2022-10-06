@@ -9,7 +9,36 @@ body {
     margin-top: 52px;
     width: 100%;
     height: calc(100% - 52px);
+    font-family: "Helvetica Neue", Sans-Serif;
+}
 
+#entry {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#entry button {
+    height: 32px;
+    padding: 8px 16px;
+    font-weight: bold;
+    background: #72cc18;
+    border-radius: 8px;
+    border-width: 0px;
+    cursor: pointer;
+  }
+
+#entry button:hover {
+    -webkit-box-shadow:inset 0px 0px 0px 2px #529b09;
+    -moz-box-shadow:inset 0px 0px 0px 2px #529b09;
+    box-shadow:inset 0px 0px 0px 2px #529b09;
+}
+
+#enterCall {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #inCall {
