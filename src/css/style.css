@@ -52,11 +52,17 @@ body {
     height: 100%;
 }
 
-#content {
+#scroll {
+    overflow-y: scroll;
     width: 50%;
     height: 100vh;
-    overflow-y: scroll;
     padding-left: 20px;
+}
+
+#content {
+    position: relative;
+    line-height: 16px;
+    font-size: 14px;
 }
 
 .cursor {
@@ -65,7 +71,7 @@ body {
     position: absolute;
     transition: all 0.5s ease-in-out;
     color: blue;
-    font-size: 14pt;
+    font-size: 14px;
 }
 
 .hidden {

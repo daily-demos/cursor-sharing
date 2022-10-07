@@ -1,4 +1,5 @@
 let mouseStopTimeout;
+let contentDiv;
 
 export function updateRemoteCursor(userID, userName, posX, posY) {
   let cursorDiv = document.getElementById(getCursorID(userID));
@@ -15,7 +16,9 @@ export function updateRemoteCursor(userID, userName, posX, posY) {
 }
 
 export function startCursorListener(callback) {
-  window.addEventListener(
+  contentDiv = document.getElementById('content');
+  const scrollDiv = document.getElementById('scroll');
+  scrollDiv.addEventListener(
     'mousemove',
     (e) => {
       clearTimeout(mouseStopTimeout);
@@ -41,15 +44,21 @@ export function removeAllCursors() {
 }
 
 function sendData(e, callback) {
-  callback(e.clientX, e.clientY);
+  if (!contentDiv) return;
+  // Send data relative to the user's position
+  // in the content DIV
+  const rect = contentDiv.getBoundingClientRect();
+  const x = e.clientX - rect.x;
+  const y = e.clientY - rect.y;
+  callback(x, y);
 }
 
 function createCursorDiv(userID) {
+  if (!contentDiv) return;
   const ele = document.createElement('div');
   ele.id = getCursorID(userID);
   ele.classList.add('cursor');
-  const container = document.getElementById('container');
-  container.appendChild(ele);
+  contentDiv.appendChild(ele);
   return ele;
 }
 
