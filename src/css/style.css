@@ -63,6 +63,7 @@ body {
     position: relative;
     line-height: 16px;
     font-size: 14px;
+    overflow: clip;
 }
 
 .cursor {
