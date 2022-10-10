@@ -42,19 +42,28 @@ export default function joinCall(roomURL) {
 }
 
 function handleAppMessage(callFrame, e) {
-  // Handling app message
+  // Retrieve data from the event
   const { data } = e;
+
+  // If the event type is not what we expect, early out
   if (data.type !== cursorUpdateMessageName) return;
 
+  // If there's no valid position data in the event data,
+  // throw an error
   if (!data.x || !data.y) {
     throw new Error('invalid cursor position data');
   }
 
+  // Retrieve participant who sent this message
   const p = callFrame.participants()[e.fromId];
+
+  // Retrieve the user name of the aprticipant
+  // who sent this message, OR just their ID
+  // if they don't have a user name set.
   let userName = e.fromId;
   if (p && p.user_name) {
     userName = p.user_name;
   }
-  // Find this participant's name
+  // Update the participant's remote cursor
   updateRemoteCursor(e.fromId, userName, data.x, data.y);
 }
