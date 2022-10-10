@@ -2,6 +2,7 @@ let mouseStopTimeout;
 let contentDiv;
 
 export function updateRemoteCursor(userID, userName, posX, posY) {
+  if (!contentDiv) return;
   let cursorDiv = document.getElementById(getCursorID(userID));
   if (!cursorDiv) {
     cursorDiv = createCursorDiv(userID);
@@ -54,7 +55,7 @@ function sendData(e, callback) {
 }
 
 function createCursorDiv(userID) {
-  if (!contentDiv) return;
+  if (!contentDiv) return null;
   const ele = document.createElement('div');
   ele.id = getCursorID(userID);
   ele.classList.add('cursor');
