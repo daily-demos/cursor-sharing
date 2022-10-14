@@ -1,25 +1,25 @@
 let mouseStopTimeout;
-let contentDiv;
+let contentElement;
 
 export function updateRemoteCursor(userID, userName, posX, posY) {
-  if (!contentDiv) return;
-  let cursorDiv = document.getElementById(getCursorID(userID));
-  if (!cursorDiv) {
-    cursorDiv = createCursorDiv(userID);
+  if (!contentElement) return;
+  let cursorElement = document.getElementById(getCursorID(userID));
+  if (!cursorElement) {
+    cursorElement = createCursorElement(userID);
   }
 
   const text = `↖️ ${userName}`;
-  if (cursorDiv.innerText !== text) {
-    cursorDiv.innerText = text;
+  if (cursorElement.innerText !== text) {
+    cursorElement.innerText = text;
   }
-  cursorDiv.style.left = `${posX}px`;
-  cursorDiv.style.top = `${posY}px`;
+  cursorElement.style.left = `${posX}px`;
+  cursorElement.style.top = `${posY}px`;
 }
 
 export function startCursorListener(callback) {
-  contentDiv = document.getElementById('content');
-  const scrollDiv = document.getElementById('scroll');
-  scrollDiv.addEventListener(
+  contentElement = document.getElementById('content');
+  const scrollElement = document.getElementById('scroll');
+  scrollElement.addEventListener(
     'mousemove',
     (e) => {
       clearTimeout(mouseStopTimeout);
@@ -33,8 +33,8 @@ export function startCursorListener(callback) {
 }
 
 export function removeCursor(userID) {
-  const cursorDiv = document.getElementById(getCursorID(userID));
-  cursorDiv?.remove();
+  const cursorElement = document.getElementById(getCursorID(userID));
+  cursorElement?.remove();
 }
 
 export function removeAllCursors() {
@@ -45,21 +45,21 @@ export function removeAllCursors() {
 }
 
 function sendData(e, callback) {
-  if (!contentDiv) return;
+  if (!contentElement) return;
   // Send data relative to the user's position
-  // in the content DIV
-  const rect = contentDiv.getBoundingClientRect();
+  // in the content element
+  const rect = contentElement.getBoundingClientRect();
   const x = e.clientX - rect.x;
   const y = e.clientY - rect.y;
   callback(x, y);
 }
 
-function createCursorDiv(userID) {
-  if (!contentDiv) return null;
+function createCursorElement(userID) {
+  if (!contentElement) return null;
   const ele = document.createElement('div');
   ele.id = getCursorID(userID);
   ele.classList.add('cursor');
-  contentDiv.appendChild(ele);
+  contentElement.appendChild(ele);
   return ele;
 }
 
