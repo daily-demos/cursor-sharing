@@ -2,6 +2,7 @@ import {
   removeAllCursors,
   removeCursor,
   startCursorListener,
+  stopCursorListener,
   updateRemoteCursor,
 } from './cursor.js';
 import { showEntry } from './scenes.js';
@@ -32,6 +33,7 @@ export default function joinCall(roomURL) {
       startCursorListener(callback);
     })
     .on('left-meeting', () => {
+      stopCursorListener();
       removeAllCursors();
       showEntry();
     })
