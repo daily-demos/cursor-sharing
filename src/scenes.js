@@ -6,8 +6,10 @@ export function showCall() {
 }
 
 export function showEntry() {
-  const callElement = document.getElementById('inCall');
+  const inCallElement = document.getElementById('inCall');
   const entryElement = document.getElementById('entry');
+  const callElement = document.getElementById('call');
+  callElement.innerText = '';
   entryElement.classList.remove('hidden');
-  callElement.classList.add('hidden');
+  inCallElement.classList.add('hidden');
 }

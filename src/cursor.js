@@ -19,17 +19,18 @@ export function updateRemoteCursor(userID, userName, posX, posY) {
 export function startCursorListener(callback) {
   contentElement = document.getElementById('content');
   const scrollElement = document.getElementById('scroll');
-  scrollElement.addEventListener(
-    'mousemove',
-    (e) => {
-      clearTimeout(mouseStopTimeout);
+  scrollElement.onmousemove = (e) => {
+    clearTimeout(mouseStopTimeout);
 
-      mouseStopTimeout = setTimeout((_) => {
-        sendData(e, callback);
-      }, 100);
-    },
-    false
-  );
+    mouseStopTimeout = setTimeout((_) => {
+      sendData(e, callback);
+    }, 100);
+  };
+}
+
+export function stopCursorListener() {
+  const scrollElement = document.getElementById('scroll');
+  scrollElement.onmousemove = null;
 }
 
 export function removeCursor(userID) {
